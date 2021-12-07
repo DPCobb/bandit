@@ -45,7 +45,8 @@ def load(filename, verbose):
         parser = BanditParser(verbose)
         for lines in script:
             clean = lines.strip()
-            parser.parseCommand(clean)
+            if len(clean) > 0:
+                parser.parseCommand(clean)
 
     else:
         blue('File not found: ' + filename)
