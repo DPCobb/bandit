@@ -27,13 +27,14 @@ Use --help for available commands.
 
 @main.command()
 @click.option('--filename', '-f', default="", help='The Bandit(.bdt) file to run')
-def load(filename):
+@click.option('--verbose', '-v', is_flag=True, help="Turn on some more verbose output")
+def load(filename, verbose):
     """Load and run a Bandit file"""
     if (os.path.exists(filename)):
         print('File discovered, running script...')
         f = open(filename, 'r')
         script = f.readlines()
-        parser = BanditParser()
+        parser = BanditParser(verbose)
         for lines in script:
             clean = lines.strip()
             parser.parseCommand(clean)

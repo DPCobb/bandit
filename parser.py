@@ -4,7 +4,7 @@ import time
 
 
 class BanditParser:
-    def __init__(self):
+    def __init__(self, verbose):
         self.methods = [
             'EXEC',
             'WAIT',
@@ -16,6 +16,8 @@ class BanditParser:
             'COMM',
             'EXIT',
         ]
+
+        self.verbose = verbose
 
     def parseCommand(self, cmd):
         # split 1 time this should give use the method
@@ -31,7 +33,9 @@ class BanditParser:
 
         if method == "EXEC":
             output = subprocess.run(args.split(' '))
-            print(output)
+
+            if self.verbose:
+                print(output)
 
         elif method == 'WAIT':
             wait = int(args)/1000
