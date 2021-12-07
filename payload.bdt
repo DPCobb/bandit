@@ -1,0 +1,3 @@
+EXEC ls -la
+WAIT 5000
+EXEC echo "hello world"
