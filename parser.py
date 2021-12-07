@@ -4,7 +4,7 @@ import time
 
 
 class BanditParser:
-    def __init__(self, verbose):
+    def __init__(self, verbose=False):
         self.methods = [
             'EXEC',
             'WAIT',
@@ -40,6 +40,10 @@ class BanditParser:
         elif method == 'WAIT':
             wait = int(args)/1000
             time.sleep(wait)
+
+        elif method == 'COMM':
+            if self.verbose:
+                print("Comment: " + args)
 
         elif method == "EXIT":
             print("Script complete, exiting now.")
