@@ -4,7 +4,7 @@ from parser import BanditParser
 
 
 def showTitle():
-    print("""
+    print('\033[91m' + """
 .______        ___      .__   __.  _______   __  .___________.
 |   _  \      /   \     |  \ |  | |       \ |  | |           |
 |  |_)  |    /  ^  \    |   \|  | |  .--.  ||  | `---|  |----`
@@ -14,7 +14,11 @@ def showTitle():
 
 Task Automation and GUI Action Scripts
 
-    """)
+    """ + '\033[0m')
+
+
+def blue(text):
+    print('\033[94m' + text + '\033[0m')
 
 
 @click.group()
@@ -33,9 +37,9 @@ def init():
 def load(filename, verbose):
     """Load and run a Bandit file"""
     showTitle()
-    print('Attempting to run .bdt file...')
+    blue('Attempting to run .bdt file...')
     if (os.path.exists(filename)):
-        print('File discovered, running script...')
+        blue('File discovered, running script...')
         f = open(filename, 'r')
         script = f.readlines()
         parser = BanditParser(verbose)
@@ -44,7 +48,7 @@ def load(filename, verbose):
             parser.parseCommand(clean)
 
     else:
-        print('File not found: ' + filename)
+        blue('File not found: ' + filename)
 
 
 if __name__ == '__main__':

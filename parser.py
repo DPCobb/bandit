@@ -19,6 +19,12 @@ class BanditParser:
 
         self.verbose = verbose
 
+    def red(self, text):
+        print('\033[91m' + text + '\033[0m')
+
+    def blue(self, text):
+        print('\033[94m' + text + '\033[0m')
+
     def parseCommand(self, cmd):
         # split 1 time this should give use the method
         parts = cmd.split(' ', 1)
@@ -28,7 +34,7 @@ class BanditParser:
     def runCommand(self, method, args=''):
         # These will be moved to methods, this is just quick test
         if method not in self.methods:
-            print('Error! Unknown method: ' + method)
+            self.red('Error! Unknown method: ' + method)
             return 0
 
         if method == "EXEC":
@@ -43,8 +49,8 @@ class BanditParser:
 
         elif method == 'COMM':
             if self.verbose:
-                print("Comment: " + args)
+                self.red("Comment: " + args)
 
         elif method == "EXIT":
-            print("Script complete, exiting now.")
+            self.blue("Script complete, exiting now.")
             return 0
