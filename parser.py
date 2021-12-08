@@ -17,7 +17,10 @@ class BanditParser:
             'COMM',
             'EXIT',
         ]
-
+        # IF ex/idea:
+        # IF [cmd] CONTAINS [some output] MOVE *[address]
+        # IF ls -la CONTAINS Documents MOVE *has_documents
+        # IF the output of this command contains Documents move to this section of the script
         self.conditional = [
             'IF'
         ]
