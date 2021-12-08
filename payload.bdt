@@ -8,6 +8,9 @@ EXEC echo "hello world"
 COMM create a new file
 EXEC touch somefile.txt
 HOTK command space
-WAIT 5000
+WAIT 1500
+TYPE hello world
+WAIT 2000
 GRAB test.png
+WAIT 1000
 EXIT

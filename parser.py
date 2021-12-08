@@ -53,6 +53,9 @@ class BanditParser:
         keys = args.split(' ')
         pyautogui.hotkey(*keys)
 
+    def runTypeMethod(self, args):
+        pyautogui.write(args)
+
     def runCommand(self, method, args=''):
         if method not in self.methods:
             self.red('Error! Unknown method: ' + method)
@@ -72,6 +75,9 @@ class BanditParser:
 
         elif method == "HOTK":
             self.runHotKey(args)
+
+        elif method == "TYPE":
+            self.runTypeMethod(args)
 
         elif method == "EXIT":
             self.blue("Script complete, exiting now.")
