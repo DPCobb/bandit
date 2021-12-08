@@ -1,6 +1,7 @@
 import os
 import subprocess
 import time
+import pyautogui
 
 
 class BanditParser:
@@ -31,25 +32,46 @@ class BanditParser:
         args = '' if len(parts) < 2 else parts[1]
         self.runCommand(parts[0], args)
 
+    def runExecMethod(self, args):
+        output = subprocess.run(args.split(' '))
+
+        if self.verbose:
+            print(output)
+
+    def runWaitMethod(self, args):
+        wait = int(args)/1000
+        time.sleep(wait)
+
+    def runCommandMethod(self, args):
+        if self.verbose:
+            self.red("Comment: " + args)
+
+    def runGrab(self, args):
+        pyautogui.screenshot(args)
+
+    def runHotKey(self, args):
+        keys = args.split(' ')
+        pyautogui.hotkey(*keys)
+
     def runCommand(self, method, args=''):
-        # These will be moved to methods, this is just quick test
         if method not in self.methods:
             self.red('Error! Unknown method: ' + method)
             return 0
 
         if method == "EXEC":
-            output = subprocess.run(args.split(' '))
-
-            if self.verbose:
-                print(output)
+            self.runExecMethod(args)
 
         elif method == 'WAIT':
-            wait = int(args)/1000
-            time.sleep(wait)
+            self.runWaitMethod(args)
 
         elif method == 'COMM':
-            if self.verbose:
-                self.red("Comment: " + args)
+            self.runCommandMethod(args)
+
+        elif method == "GRAB":
+            self.runGrab(args)
+
+        elif method == "HOTK":
+            self.runHotKey(args)
 
         elif method == "EXIT":
             self.blue("Script complete, exiting now.")

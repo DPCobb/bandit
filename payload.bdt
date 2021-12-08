@@ -7,4 +7,7 @@ WAIT 5000
 EXEC echo "hello world"
 COMM create a new file
 EXEC touch somefile.txt
+HOTK command space
+WAIT 5000
+GRAB test.png
 EXIT
