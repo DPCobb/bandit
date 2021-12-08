@@ -42,7 +42,7 @@ class BanditParser:
         wait = int(args)/1000
         time.sleep(wait)
 
-    def runCommandMethod(self, args):
+    def runCommentMethod(self, args):
         if self.verbose:
             self.red("Comment: " + args)
 
@@ -68,7 +68,7 @@ class BanditParser:
             self.runWaitMethod(args)
 
         elif method == 'COMM':
-            self.runCommandMethod(args)
+            self.runCommentMethod(args)
 
         elif method == "GRAB":
             self.runGrab(args)
