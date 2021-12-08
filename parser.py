@@ -18,6 +18,23 @@ class BanditParser:
             'EXIT',
         ]
 
+        self.conditional = [
+            'IF'
+        ]
+
+        self.logical = [
+            'HAS',
+            'CONTAINS',
+            'IS',
+            'IS NOT'
+            'MISSING'
+        ]
+
+        self.comparison = [
+            'EQ',
+            'NOT EQ'
+        ]
+
         self.verbose = verbose
 
     def red(self, text):
@@ -33,8 +50,8 @@ class BanditParser:
         self.runCommand(parts[0], args)
 
     def runExecMethod(self, args):
-        output = subprocess.run(args.split(' '))
-
+        output = subprocess.run(args.split(
+            ' '), stdout=subprocess.PIPE).stdout.decode('utf-8')
         if self.verbose:
             print(output)
 
