@@ -1,5 +1,6 @@
 import click
 import os
+import subprocess
 from parser import BanditParser
 
 
@@ -51,6 +52,23 @@ def load(filename, verbose):
 
     else:
         blue('File not found: ' + filename)
+
+
+@main.command()
+@click.option('--url', '-u', default="", help="URL to the remote file to load")
+@click.option('--verbose', '-v', is_flag=True, help="Turn on some more verbose output")
+def remote(url, verbose):
+    """Loads a remote Bandit file and runs it"""
+    showTitle()
+    blue('Attempting to load and run remote file...')
+    r = subprocess.run(
+        ['curl', url], stdout=subprocess.PIPE).stdout.decode('utf-8')
+    parser = BanditParser(verbose)
+    blue('Running remote file...')
+    for lines in r.split('\n'):
+        clean = lines.strip()
+        if len(clean) > 0:
+            parser.parseCommand(clean)
 
 
 if __name__ == '__main__':
