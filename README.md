@@ -3,6 +3,8 @@
 
 Bandit helps automate tasks in both the command line and GUI.
 
+Requires curl for remote requests
+
 ### TODO
 Everything.
 
@@ -87,6 +89,46 @@ WAIT 1000
 GRAB google-saf.png
 EXIT
 ```
+
+## Bandit Command Line Application
+
+The command line application processes and runs the Bandit files.
+
+### Commands
+```
+load    Load and run a Bandit file
+remote  Loads a remote Bandit file and runs it
+```
+
+#### load
+```
+Usage: bandit load [OPTIONS]
+
+  Load and run a Bandit file
+
+Options:
+  -f, --filename TEXT  The Bandit(.bdt) file to run
+  -v, --verbose        Turn on some more verbose output
+  --help               Show this message and exit.
+```
+
+#### remote
+```
+Usage: bandit remote [OPTIONS]
+
+  Loads a remote Bandit file and runs it
+
+Options:
+  -u, --url TEXT  URL to the remote file to load
+  -v, --verbose   Turn on some more verbose output
+  --help          Show this message and exit.
+```
+
+#### debug (WIP)
+
+debug will verify a script has no errors WIP
+
+
 
 ### Notes about Mac
 
