@@ -193,3 +193,8 @@ SEND enter
 [a] # << if condition met we skip to here
 TYPE ls -la
 ```
+
+Hold command to highlight text:
+```
+HOLD shift RIGHT=4
+```
