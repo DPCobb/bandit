@@ -71,6 +71,27 @@ Terminates the script
 EXIT
 ```
 
+### Example Script
+
+This is an example BDT script in that on a Mac will open Safari, navigate to google.com, and take a screenshot.
+```
+HOTK command space
+WAIT 1000
+TYPE safari.app
+WAIT 1000
+HOTK enter
+WAIT 2000
+TYPE google.com
+HOTK enter
+WAIT 1000
+GRAB google-saf.png
+EXIT
+```
+
+### Notes about Mac
+
+Use on a Mac will require some settings to be adjusted. Mac will ask for permissions as needed for the terminal to send key strokes and take screenshots.
+
 ## Running a BDT file
 
 In the command line run the following after installing the bandit commnad line application.
