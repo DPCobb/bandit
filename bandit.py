@@ -23,6 +23,13 @@ def blue(text):
     print('\033[94m' + text + '\033[0m')
 
 
+def checkDownload(response):
+    codes = ['404', '401', '403', '500', '501', '503', '301', '302']
+    if (response.split(':')[0] in codes):
+        blue('Error getting file: ' + response + '. Exiting')
+        return False
+
+
 @click.group()
 def main():
     pass
@@ -68,7 +75,16 @@ def remote(url, verbose):
     for lines in r.split('\n'):
         clean = lines.strip()
         if len(clean) > 0:
+            if checkDownload(clean) == False:
+                return 0
             parser.parseCommand(clean)
+
+
+@main.command()
+@click.option('--file', '--f', help="Debug a Bandit file.")
+@click.option('--remote', '--r', is_flag=True, help="Mark file to debug as a remote file")
+def debug(file, remote):
+    blue('Loading Bandit file to debug...')
 
 
 if __name__ == '__main__':
