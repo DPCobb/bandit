@@ -9,7 +9,6 @@ class BanditParser:
         self.methods = [
             'EXEC',
             'WAIT',
-            'SUPE',
             'HOTK',
             'SEND',
             'GRAB',
@@ -73,6 +72,9 @@ class BanditParser:
         keys = args.split(' ')
         pyautogui.hotkey(*keys)
 
+    def runSend(self, args):
+        pyautogui.hotkey(args)
+
     def runTypeMethod(self, args):
         pyautogui.write(args)
 
@@ -98,6 +100,9 @@ class BanditParser:
 
         elif method == "TYPE":
             self.runTypeMethod(args)
+
+        elif method == "SEND":
+            self.runSend(args)
 
         elif method == "EXIT":
             self.blue("Script complete, exiting now.")
