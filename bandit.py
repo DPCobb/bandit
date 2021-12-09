@@ -68,8 +68,13 @@ def remote(url, verbose):
     """Loads a remote Bandit file and runs it"""
     showTitle()
     blue('Attempting to load and run remote file...')
+    command = ['curl', '-s', url]
+
+    if verbose == True:
+        command = ['curl', url]
+
     r = subprocess.run(
-        ['curl', url], stdout=subprocess.PIPE).stdout.decode('utf-8')
+        command, stdout=subprocess.PIPE).stdout.decode('utf-8')
     parser = BanditParser(verbose)
     blue('Running remote file...')
     for lines in r.split('\n'):
