@@ -1,6 +1,7 @@
 # Bandit
-## Task Automation and GUI Scripting
+## Task Automation Scripting
 
+Bandit helps automate tasks in both the command line and GUI.
 
 ### TODO
 Everything.
@@ -9,14 +10,90 @@ Everything.
 
 This will be loaded and run line by line
 
-#### Language Definition
+## Methods
+
+Below is a list of methods and examples on their use.
+
+### EXEC
+
+Executes a shell command
+```
+EXEC ls -la
+```
+
+### WAIT
+
+Tells the script to wait for a specific period of time in milliseconds.
+```
+WAIT 1000
+```
+
+### HOTK
+
+Sends a series of keys as a hotkey command.
+
+```
+HOTK command space
+```
+
+### SEND
+
+Sends a single keystroke
+```
+SEND ENTER
+```
+
+### GRAB
+
+Takes a screen shot and saves it to passed location
+```
+GRAB /foo/bar/baz.png
+```
+
+### TYPE
+
+Sends text to the current active window
+```
+TYPE hello world
+```
+
+### COMM
+
+Marks the line as a comment and it is ignored
+```
+COMM this is a comment
+```
+
+### EXIT
+
+Terminates the script
+```
+EXIT
+```
+
+## Running a BDT file
+
+In the command line run the following after installing the bandit commnad line application.
+
+```
+bandit load -f [BANDIT FILE]
+```
+
+You can also pass ```-v``` for verbose output.
+
+## Installing
+
+Clone this repository and run ```pip install .```
+
+## Notes and Misc
+
+### Language Definition
 
 These are the first commands I'd like to have working
 
 ```
 EXEC    Executes a command in the terminal
 WAIT    Delay/wait etc
-SUPE    Windows Key/Command key
 HOTK    Sends a hot key combination
 SEND    Sends a key stroke (ie: Enter)
 GRAB    Take a screenshot
@@ -28,7 +105,7 @@ EXIT    Ends the script
 EX:
 
 ```
-SUPE
+HOTK win
 TYPE terminal
 SEND enter
 TYPE ls -la
