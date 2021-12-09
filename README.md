@@ -79,10 +79,10 @@ HOTK command space
 WAIT 1000
 TYPE safari.app
 WAIT 1000
-HOTK enter
+SEND enter
 WAIT 2000
 TYPE google.com
-HOTK enter
+SEND enter
 WAIT 1000
 GRAB google-saf.png
 EXIT
