@@ -12,7 +12,8 @@ def showTitle():
 |  |_)  |  /  _____  \  |  |\   | |  '--'  ||  |     |  |
 |______/  /__/     \__\ |__| \__| |_______/ |__|     |__|
 
-Task Automation and GUI Action Scripts
+Task Automation Scripting
+Version: 1.0.0-b
 
     """ + '\033[0m')
 
