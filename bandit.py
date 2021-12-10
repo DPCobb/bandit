@@ -38,7 +38,12 @@ def main():
 
 @main.command()
 def init():
+    """Show the title information"""
     showTitle()
+    blue("This tool is for personal use only. Please follow allow applicable laws when using this tool.")
+    blue("\nI'm not responsible if you do anything dumb.")
+    blue("\nThis tool uses PyAutoGUI for sending keystrokes and taking screenshots.")
+    blue("\nView the possible key inputs here: https://pyautogui.readthedocs.io/en/latest/keyboard.html#keyboard-keys")
 
 
 @main.command()
@@ -89,6 +94,7 @@ def remote(url, verbose):
 @main.command()
 @click.option('--filename', '-f', help="Debug a Bandit file.")
 def debug(filename):
+    """Debugs a Bandit file and ensures it has the correct syntax"""
     showTitle()
     blue('Loading Bandit file to debug...')
     debugger = BanditDebugger()
