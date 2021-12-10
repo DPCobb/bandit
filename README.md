@@ -45,6 +45,13 @@ Sends a single keystroke
 SEND ENTER
 ```
 
+SEND can be used in combination with the special operator ```#[NUM]``` to tell the script to repeat that SEND command x times.
+
+Example send tab four times:
+```
+SEND tab#4
+```
+
 ### GRAB
 
 Takes a screen shot and saves it to passed location

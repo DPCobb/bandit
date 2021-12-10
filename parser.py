@@ -73,7 +73,16 @@ class BanditParser:
         pyautogui.hotkey(*keys)
 
     def runSend(self, args):
-        pyautogui.hotkey(args)
+        if '#' in args:
+            parts = args.split('#')
+            i = 0
+
+            while i < int(parts[1]):
+                pyautogui.hotkey(parts[0])
+                i += 1
+
+        else:
+            pyautogui.hotkey(args)
 
     def runTypeMethod(self, args):
         pyautogui.write(args)

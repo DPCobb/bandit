@@ -1,0 +1,23 @@
+COMM Demo Bandit Script
+COMM Bandit: v0.1.1
+COMM Author: dcobb
+COMM Opens web browser and navigates to Amazon and searches for python books
+
+HOTK command space
+WAIT 500
+TYPE safari.app
+WAIT 500
+SEND enter
+WAIT 1000
+TYPE amazon.com
+SEND enter
+WAIT 1000
+COMM tab 4x should bring us to the search bar
+SEND tab#4
+WAIT 500
+TYPE python books
+WAIT 500
+SEND enter
+WAIT 1000
+GRAB test-amazon.png
+EXIT
