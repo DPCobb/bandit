@@ -5,9 +5,6 @@ Bandit helps automate tasks in both the command line and GUI.
 
 Requires curl for remote requests
 
-### TODO
-Everything.
-
 ### Bandit File (.bdt)
 
 This will be loaded and run line by line
@@ -42,7 +39,7 @@ HOTK command space
 
 Sends a single keystroke
 ```
-SEND ENTER
+SEND enter
 ```
 
 SEND can be used in combination with the special operator ```#[NUM]``` to tell the script to repeat that SEND command x times.
@@ -133,8 +130,17 @@ Options:
 
 #### debug (WIP)
 
-debug will verify a script has no errors WIP
+Validates BDT script
 
+```
+Usage: bandit debug [OPTIONS]
+
+  Debugs a Bandit file and ensures it has the correct syntax
+
+Options:
+  -f, --filename TEXT  Debug a Bandit file.
+  --help               Show this message and exit.
+```
 
 
 ### Notes about Mac
@@ -155,9 +161,7 @@ You can also pass ```-v``` for verbose output.
 
 Clone this repository and run ```pip install .```
 
-## Notes and Misc
-
-### Language Definition
+## Notes, TODO, and Misc
 
 These are the first commands I'd like to have working
 
@@ -204,9 +208,4 @@ TYPE ls -la
 Hold command to highlight text:
 ```
 HOLD shift right#4
-```
-
-Repeat a key
-```
-SEND left#4
 ```
