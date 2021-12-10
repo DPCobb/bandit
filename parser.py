@@ -78,7 +78,7 @@ class BanditParser:
     def runTypeMethod(self, args):
         pyautogui.write(args)
 
-    def runCommand(self, method, args=''):
+    def runCommand(self, method, args='', debug=False):
         if method not in self.methods:
             self.red('Error! Unknown method: ' + method)
             return 0

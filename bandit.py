@@ -2,6 +2,7 @@ import click
 import os
 import subprocess
 from parser import BanditParser
+from debugger import BanditDebugger
 
 
 def showTitle():
@@ -86,10 +87,24 @@ def remote(url, verbose):
 
 
 @main.command()
-@click.option('--file', '--f', help="Debug a Bandit file.")
-@click.option('--remote', '--r', is_flag=True, help="Mark file to debug as a remote file")
-def debug(file, remote):
+@click.option('--filename', '-f', help="Debug a Bandit file.")
+def debug(filename):
+    showTitle()
     blue('Loading Bandit file to debug...')
+    debugger = BanditDebugger()
+    if (os.path.exists(filename)):
+        blue('File discovered, running script...')
+        f = open(filename, 'r')
+        script = f.readlines()
+        for i, lines in enumerate(script):
+            clean = lines.strip()
+            if len(clean) > 0:
+                debugger.parseDebug(clean, i)
+
+        debugger.displayErrors()
+
+    else:
+        blue('File not found: ' + filename)
 
 
 if __name__ == '__main__':

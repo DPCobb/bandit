@@ -196,5 +196,10 @@ TYPE ls -la
 
 Hold command to highlight text:
 ```
-HOLD shift RIGHT=4
+HOLD shift right#4
+```
+
+Repeat a key
+```
+SEND left#4
 ```

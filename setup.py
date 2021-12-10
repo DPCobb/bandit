@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='bandit',
     version='1.0.0',
-    py_modules=['bandit', 'parser'],
+    py_modules=['bandit', 'parser', 'debugger'],
     install_requires=[
         'Click', 'pyautogui'
     ],
