@@ -14,6 +14,8 @@ class BanditDebugger:
             'GRAB',
             'TYPE',
             'COMM',
+            'IFEL',
+            'SECT',
             'EXIT',
         ]
 
@@ -37,7 +39,7 @@ class BanditDebugger:
 
     def checkMethodExists(self, method):
         if method not in self.methods:
-            self.red('Error! Unknown method')
+            self.red('Error! Unknown method: ' + method, True)
             return False
 
         return True
@@ -137,6 +139,11 @@ class BanditDebugger:
                 return
 
             self.green('SEND would pass the following key: ' + args)
+
+        elif method == 'SECT':
+            self.green('SECT contains a single argument naming the SECT')
+            if len(args) == 0:
+                self.red('Error! SECT missing argument.', True)
 
         elif method == "EXIT":
             self.green('EXIT ends and exits the script.')
