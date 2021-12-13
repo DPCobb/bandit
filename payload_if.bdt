@@ -1,0 +1,16 @@
+COMM Testing IF statements
+COMM Author dcobb
+
+HOTK command space
+WAIT 200
+TYPE textEdit.app
+WAIT 200
+SEND enter
+WAIT 200
+IFEL [ls -la] INCLUDES [bandit.py];; MOVE a
+TYPE this should be typed if output includes bandit.py
+SECT a
+IFEL [ls -la] EXCLUDES [bandit.py];; MOVE b
+TYPE This should show if output does not have bandit.py
+SECT b
+TYPE This should always show up

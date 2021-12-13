@@ -15,21 +15,17 @@ class BanditParser:
             'TYPE',
             'COMM',
             'EXIT',
+            'IFEL',
+            'SECT'
         ]
-        # IF ex/idea:
-        # IF [cmd] CONTAINS [some output] MOVE *[address]
-        # IF ls -la CONTAINS Documents MOVE *has_documents
-        # IF the output of this command contains Documents move to this section of the script
-        self.conditional = [
-            'IF'
+
+        self.special = [
+            'MOVE'
         ]
 
         self.logical = [
-            'HAS',
-            'CONTAINS',
-            'IS',
-            'IS NOT'
-            'MISSING'
+            'INCLUDES',
+            'EXCLUDES'
         ]
 
         self.comparison = [
@@ -38,6 +34,9 @@ class BanditParser:
         ]
 
         self.verbose = verbose
+        self.ifActive = False
+        self.ifFound = False
+        self.ifBlock = ''
 
     def red(self, text):
         print('\033[91m' + text + '\033[0m')
@@ -87,32 +86,94 @@ class BanditParser:
     def runTypeMethod(self, args):
         pyautogui.write(args)
 
+    def runIf(self, args):
+        parts = args.split(']', 1)
+        condition = parts[0]
+        condition = condition.replace('[', '', 1)
+
+        output = subprocess.run(condition.split(
+            ' '), stdout=subprocess.PIPE).stdout.decode('utf-8')
+
+        if self.verbose:
+            print(output)
+
+        logical = parts[1].strip().split(' ', 1)[0]
+
+        if logical not in self.logical:
+            self.red('Error! Unknown logical operator: ' + logical)
+            return 0
+
+        if logical == 'INCLUDES':
+            search = parts[1].strip().split('[', 1)[1]
+            search = search.replace(']', '', 1)
+            search = search.replace(';;', '', 1)
+            search = search.split(' ', 1)[0].strip()
+            output = str(output)
+            found = output.find(search)
+            if self.verbose:
+                print(search)
+
+            if found < 0:
+                self.ifActive = True
+                move = parts[1].strip().split(';;', 1)[1]
+
+                move = move.strip().split('MOVE ', 1)[1]
+                self.ifBlock = move
+
+        if logical == 'EXCLUDES':
+            search = parts[1].strip().split('[', 1)[1]
+            search = search.replace(']', '', 1)
+            search = search.replace(';;', '', 1)
+            search = search.split(' ', 1)[0].strip()
+            output = str(output)
+            found = output.find(search)
+            if self.verbose:
+                print(search)
+
+            if found > 0:
+                self.ifActive = True
+                move = parts[1].strip().split(';;', 1)[1]
+
+                move = move.strip().split('MOVE ', 1)[1]
+                self.ifBlock = move
+
     def runCommand(self, method, args='', debug=False):
         if method not in self.methods:
             self.red('Error! Unknown method: ' + method)
             return 0
 
-        if method == "EXEC":
-            self.runExecMethod(args)
+        if self.ifActive == True:
+            if method == 'SECT':
+                if self.ifBlock == args:
+                    self.ifActive = False
+        else:
+            if method == "EXEC":
+                self.runExecMethod(args)
 
-        elif method == 'WAIT':
-            self.runWaitMethod(args)
+            elif method == 'WAIT':
+                self.runWaitMethod(args)
 
-        elif method == 'COMM':
-            self.runCommentMethod(args)
+            elif method == 'COMM':
+                self.runCommentMethod(args)
 
-        elif method == "GRAB":
-            self.runGrab(args)
+            elif method == "GRAB":
+                self.runGrab(args)
 
-        elif method == "HOTK":
-            self.runHotKey(args)
+            elif method == "HOTK":
+                self.runHotKey(args)
 
-        elif method == "TYPE":
-            self.runTypeMethod(args)
+            elif method == "TYPE":
+                self.runTypeMethod(args)
 
-        elif method == "SEND":
-            self.runSend(args)
+            elif method == "SEND":
+                self.runSend(args)
 
-        elif method == "EXIT":
-            self.blue("Script complete, exiting now.")
-            return 0
+            elif method == "IFEL":
+                self.runIf(args)
+
+            elif method == "SECT":
+                pass
+
+            elif method == "EXIT":
+                self.blue("Script complete, exiting now.")
+                return 0
