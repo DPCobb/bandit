@@ -70,7 +70,7 @@ Marks the line as a comment and it is ignored
 COMM this is a comment
 ```
 
-### IFEL
+### IFEL (WIP)
 Starts a basic conditional (IF/ELSE) statement
 ```
 IFEL [ls -la] INCLUDES [bandit.py];; MOVE a
@@ -192,47 +192,15 @@ Clone this repository and run ```pip install .```
 
 ## Notes, TODO, and Misc
 
-These are the first commands I'd like to have working
+### TODO
 
-```
-EXEC    Executes a command in the terminal
-WAIT    Delay/wait etc
-HOTK    Sends a hot key combination
-SEND    Sends a key stroke (ie: Enter)
-GRAB    Take a screenshot
-TYPE    Send text to GUI
-COMM    Comment
-EXIT    Ends the script
-```
+- Refactor
+- Finish debug
+- Nested conditionals
+- More comparisons for ifel
+- REAP to repeat script X times
 
-EX:
-
-```
-HOTK win
-TYPE terminal
-SEND enter
-TYPE ls -la
-SEND enter
-GRAB
-EXIT
-```
-
-Nice to have:
-```
-MOVE    Move to a specific spot in script
-IF      If this do this (IF .... MOV ...)
-```
-We'll have to see what is possible with pyauto gui but here's the idea of if/move
-(IF this is true MOVE to this part of the code)
-
-```
-IF window has something;; MOVE a
-SUPE
-TYPE terminal
-SEND enter
-[a] # << if condition met we skip to here
-TYPE ls -la
-```
+### Misc
 
 Hold command to highlight text:
 ```
