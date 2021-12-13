@@ -70,6 +70,32 @@ Marks the line as a comment and it is ignored
 COMM this is a comment
 ```
 
+### IFEL
+Starts a basic conditional (IF/ELSE) statement
+```
+IFEL [ls -la] INCLUDES [bandit.py];; MOVE a
+```
+
+The above command essentially means:
+```
+IF the output of executing [cmd] INCLUDES [this string] run;; ELSE MOVE to SECT a
+```
+The commands between ```IFEL``` and ```SECT a``` will only run if the comparison is TRUE.
+
+**Nested conditionals are not yet supported**
+
+EXAMPLE:
+```
+IFEL [ls -la] INCLUDES [bandit.py];; MOVE a
+TYPE this should be typed if output includes bandit.py
+SECT a
+IFEL [ls -la] EXCLUDES [bandit.py];; MOVE b
+TYPE This should show if output does not have bandit.py
+SECT b
+TYPE This should always show up
+```
+To see this in action run the ```payload_if.bdt``` file.
+
 ### EXIT
 
 Terminates the script
@@ -100,6 +126,8 @@ The command line application processes and runs the Bandit files.
 
 ### Commands
 ```
+debug   Debugs a Bandit file and ensures it has the correct syntax
+init    Show the title information
 load    Load and run a Bandit file
 remote  Loads a remote Bandit file and runs it
 ```
@@ -142,6 +170,7 @@ Options:
   --help               Show this message and exit.
 ```
 
+*TODO* Need to add support for IFEL
 
 ### Notes about Mac
 
