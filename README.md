@@ -78,9 +78,16 @@ IFEL [ls -la] INCLUDES [bandit.py];; MOVE a
 
 The above command essentially means:
 ```
-IF the output of executing [cmd] INCLUDES [this string] run;; ELSE MOVE to SECT a
+IF the output of executing [cmd] [OPERATOR] [this string] run;; ELSE MOVE to SECT a
 ```
 The commands between ```IFEL``` and ```SECT a``` will only run if the comparison is TRUE.
+
+#### OPERATOR values
+
+- INCLUDES the output includes the following string
+- EXCLUDES the output does not include the following string
+- EQ       the output is equal to the following string
+- NOTEQ    the output is not equal to the following string
 
 **Nested conditionals are not yet supported**
 
