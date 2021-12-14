@@ -7,7 +7,7 @@ Requires curl for remote requests
 
 ### Bandit File (.bdt)
 
-This will be loaded and run line by line
+This will be loaded and run line by line. Really right now this can be any plain text file, eventually we'll check for a .bdt extension.
 
 ## Methods
 
