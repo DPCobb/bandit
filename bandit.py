@@ -79,7 +79,7 @@ def remote(url, verbose):
     showTitle()
     blue('Attempting to load and run remote file...')
 
-    if url.find('https://raw.github.com') < 0:
+    if url.find('https://raw.githubusercontent.com') < 0:
         red('Error! Remote file must be a Raw GitHub URL')
         return 0
 
