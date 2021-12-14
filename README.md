@@ -7,6 +7,10 @@ Bandit helps automate tasks in both the command line and GUI.
 
 Requires curl for remote requests
 
+### Legal Disclaimer
+
+This is for automation on your own machine, you do something illegal that's on you.
+
 ### Bandit File (.bdt)
 
 This will be loaded and run line by line. Really right now this can be any plain text file, eventually we'll check for a .bdt extension.
