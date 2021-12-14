@@ -23,7 +23,7 @@ class BanditParser:
             'MOVE'
         ]
 
-        self.logical = [
+        self.comparison = [
             'INCLUDES',
             'EXCLUDES',
             'EQ',
@@ -94,10 +94,10 @@ class BanditParser:
         if self.verbose:
             print(output)
 
-        logical = parts[1].strip().split(' ', 1)[0]
+        comparison = parts[1].strip().split(' ', 1)[0]
 
-        if logical not in self.logical:
-            self.red('Error! Unknown logical operator: ' + logical)
+        if comparison not in self.comparison:
+            self.red('Error! Unknown comparison operator: ' + comparison)
             return 0
 
         search = parts[1].strip().split('[', 1)[1]
@@ -106,7 +106,7 @@ class BanditParser:
         search = search.split(' ', 1)[0].strip()
         output = str(output)
 
-        if logical == 'INCLUDES':
+        if comparison == 'INCLUDES':
             found = output.find(search)
             if self.verbose:
                 print(search)
@@ -118,7 +118,7 @@ class BanditParser:
                 move = move.strip().split('MOVE ', 1)[1]
                 self.ifBlock = move
 
-        if logical == 'EXCLUDES':
+        if comparison == 'EXCLUDES':
             found = output.find(search)
             if self.verbose:
                 print(search)
@@ -130,7 +130,7 @@ class BanditParser:
                 move = move.strip().split('MOVE ', 1)[1]
                 self.ifBlock = move
 
-        if logical == 'EQ':
+        if comparison == 'EQ':
             found = output == search
             if self.verbose:
                 print(search)
@@ -142,7 +142,7 @@ class BanditParser:
                 move = move.strip().split('MOVE ', 1)[1]
                 self.ifBlock = move
 
-        if logical == 'NOTEQ':
+        if comparison == 'NOTEQ':
             found = output != search
             if self.verbose:
                 print(search)
