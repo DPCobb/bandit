@@ -15,7 +15,7 @@ def showTitle():
 |______/  /__/     \__\ |__| \__| |_______/ |__|     |__|
 
 Task Automation Scripting
-Version: 1.0.0-b
+Version: 1.0.0 aka It ain't pretty but it works
 
     """ + '\033[0m')
 
