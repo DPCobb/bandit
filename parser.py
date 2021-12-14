@@ -25,12 +25,9 @@ class BanditParser:
 
         self.logical = [
             'INCLUDES',
-            'EXCLUDES'
-        ]
-
-        self.comparison = [
+            'EXCLUDES',
             'EQ',
-            'NOT EQ'
+            'NOTEQ'
         ]
 
         self.verbose = verbose
@@ -103,12 +100,13 @@ class BanditParser:
             self.red('Error! Unknown logical operator: ' + logical)
             return 0
 
+        search = parts[1].strip().split('[', 1)[1]
+        search = search.replace(']', '', 1)
+        search = search.replace(';;', '', 1)
+        search = search.split(' ', 1)[0].strip()
+        output = str(output)
+
         if logical == 'INCLUDES':
-            search = parts[1].strip().split('[', 1)[1]
-            search = search.replace(']', '', 1)
-            search = search.replace(';;', '', 1)
-            search = search.split(' ', 1)[0].strip()
-            output = str(output)
             found = output.find(search)
             if self.verbose:
                 print(search)
@@ -121,16 +119,35 @@ class BanditParser:
                 self.ifBlock = move
 
         if logical == 'EXCLUDES':
-            search = parts[1].strip().split('[', 1)[1]
-            search = search.replace(']', '', 1)
-            search = search.replace(';;', '', 1)
-            search = search.split(' ', 1)[0].strip()
-            output = str(output)
             found = output.find(search)
             if self.verbose:
                 print(search)
 
             if found > 0:
+                self.ifActive = True
+                move = parts[1].strip().split(';;', 1)[1]
+
+                move = move.strip().split('MOVE ', 1)[1]
+                self.ifBlock = move
+
+        if logical == 'EQ':
+            found = output == search
+            if self.verbose:
+                print(search)
+
+            if found:
+                self.ifActive = True
+                move = parts[1].strip().split(';;', 1)[1]
+
+                move = move.strip().split('MOVE ', 1)[1]
+                self.ifBlock = move
+
+        if logical == 'NOTEQ':
+            found = output != search
+            if self.verbose:
+                print(search)
+
+            if found:
                 self.ifActive = True
                 move = parts[1].strip().split(';;', 1)[1]
 

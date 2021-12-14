@@ -1,0 +1,8 @@
+COMM Test equal/not equal
+
+IFEL [pwd] EQ [/Users/danielcobb/Desktop/dev/bandit];; MOVE a
+TYPE We are in the bandit dir
+SECT a
+IFEL [pwd] NOTEQ [/Users/danielcobb/Desktop/dev/bandit];; MOVE b
+TYPE We are not in the bandit dir
+SECT b
