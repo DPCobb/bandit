@@ -1,6 +1,8 @@
 # Bandit
 ## Task Automation Scripting
 
+v1.0.0 aka the it works but it ain't pretty version.
+
 Bandit helps automate tasks in both the command line and GUI.
 
 Requires curl for remote requests
