@@ -1,7 +1,10 @@
 COMM ################################################################
-COMM Run if correct date
-COMM This script will run only if it is the correct date
-COMM Author: DCobb
+COMM payload_date.bdt
+COMM DESC: The output of this script will vary based on day of year
+COMM AUTHOR: DCobb
+
+COMM RUNS ON: Mac 
+COMM VERSION: bandit v1.0.0
 COMM ################################################################
 
 COMM Run if today is 12-13
