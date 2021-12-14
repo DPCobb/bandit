@@ -24,6 +24,10 @@ def blue(text):
     print('\033[94m' + text + '\033[0m')
 
 
+def red(text):
+    print('\033[91m' + text + '\033[0m')
+
+
 def checkDownload(response):
     codes = ['404', '401', '403', '500', '501', '503', '301', '302']
     if (response.split(':')[0] in codes):
@@ -68,12 +72,17 @@ def load(filename, verbose):
 
 
 @main.command()
-@click.option('--url', '-u', default="", help="URL to the remote file to load")
+@click.option('--url', '-u', default="", help="Raw GitHub URL to the remote file to load")
 @click.option('--verbose', '-v', is_flag=True, help="Turn on some more verbose output")
 def remote(url, verbose):
     """Loads a remote Bandit file and runs it"""
     showTitle()
     blue('Attempting to load and run remote file...')
+
+    if url.find('https://raw.github.com') < 0:
+        red('Error! Remote file must be a Raw GitHub URL')
+        return 0
+
     command = ['curl', '-s', url]
 
     if verbose == True:
