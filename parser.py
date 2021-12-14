@@ -131,11 +131,12 @@ class BanditParser:
                 self.ifBlock = move
 
         if comparison == 'EQ':
-            found = output == search
+            found = output.strip() == search
             if self.verbose:
                 print(search)
+                print(found)
 
-            if found:
+            if found != True:
                 self.ifActive = True
                 move = parts[1].strip().split(';;', 1)[1]
 
@@ -143,11 +144,12 @@ class BanditParser:
                 self.ifBlock = move
 
         if comparison == 'NOTEQ':
-            found = output != search
+            found = output.strip() != search
             if self.verbose:
                 print(search)
+                print(found)
 
-            if found:
+            if found != True:
                 self.ifActive = True
                 move = parts[1].strip().split(';;', 1)[1]
 
