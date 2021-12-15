@@ -7,6 +7,8 @@ Bandit helps automate tasks in both the command line and GUI.
 
 Requires curl for remote requests
 
+[Bandit Payloads and Syntax Highlighter](https://github.com/DPCobb/banditpayloads)
+
 ### Legal Disclaimer
 
 This is for automation on your own machine, you do something illegal that's on you.
